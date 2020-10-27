@@ -24,7 +24,7 @@ client.on('ready', async () => {
             }
         })
     }
-    console.log({DB_URL, DB_NAME})
+    
     client.setProvider(
         MongoClient.connect(DB_URL as string, {
             useNewUrlParser: true,
