@@ -20,13 +20,16 @@ client.on('ready', async () => {
             status: 'online',
             activity: {
                 name: 'video games',
-                type: 'CUSTOM_STATUS'
+                type: 'PLAYING'
             }
         })
     }
     console.log({DB_URL, DB_NAME})
     client.setProvider(
-        MongoClient.connect(DB_URL as string).then(dbClient => new MongoDBProvider(dbClient, DB_NAME))
+        MongoClient.connect(DB_URL as string, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }).then(dbClient => new MongoDBProvider(dbClient, DB_NAME))
     )
     .catch(console.error);
 
