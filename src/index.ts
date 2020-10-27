@@ -24,9 +24,11 @@ client.on('ready', async () => {
             }
         })
     }
+    console.log({DB_URL, DB_NAME})
     client.setProvider(
-        MongoClient.connect(DB_URL).then(dbClient => new MongoDBProvider(dbClient, DB_NAME))
-    ).catch(console.error);
+        MongoClient.connect(DB_URL as string).then(dbClient => new MongoDBProvider(dbClient, DB_NAME))
+    )
+    .catch(console.error);
 
     client.registry
     .registerGroups([
